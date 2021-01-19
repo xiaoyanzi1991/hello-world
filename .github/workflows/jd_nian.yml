@@ -19,15 +19,20 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
+      - name: Checkout
+        run: |
+          git clone https://github.com/269569205/jd_scripts.git ~/scripts
       - name: Use Node.js 10.x
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
       - name: npm install
         run: |
+          cd ~/scripts
           npm install
       - name: '运行 炸年兽'
         run: |
+          cd ~/scripts
           node jd_nian.js
           node jd_nianCollect.js
         env:

@@ -1,0 +1,95 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@xiaoyanzi1991 
+269569205
+/
+jd_scripts
+1
+19
+Code
+Issues
+1
+Pull requests
+2
+Actions
+Projects
+Wiki
+Security
+Insights
+You’re making changes in a project you don’t have write access to. Submitting a change will write it to a new branch in your fork xiaoyanzi1991/jd_scripts-1, so you can send a pull request.
+jd_scripts
+/
+.github
+/
+workflows
+/
+jd_festival.yml
+ 
+
+Spaces
+
+2
+
+No wrap
+1
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+2
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+3
+​
+4
+name: jd_festival
+5
+​
+6
+on:
+7
+  workflow_dispatch:
+8
+  schedule:
+9
+    - cron: '10 8 * * *'
+10
+  watch:
+11
+    types: started
+12
+  repository_dispatch:
+13
+    types: jd_festival
+14
+jobs:
+15
+  build:
+16
+​
+17
+    runs-on: ubuntu-latest
+18
+    if: github.event.repository.owner.id == github.event.sender.id
+19
+    steps:
+20
+      - name: Checkout
+21
+        run: |
+22
+          git clone https://github.com/269569205/jd_scripts.git ~/scripts
+23
+          sed -i "s/GITHUB/admin99.net/g" `grep GITHUB -rl ~/scripts`
+24
+      - name: Use Node.js 10.x
+25
+        uses: actions/setup-node@v1
+26
+        with:
+27
+          node-version: 10.x
+Use Control + Space to trigger autocomplete in most situations.
+Search Marketplace for Actions
